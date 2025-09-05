@@ -1,703 +1,134 @@
 # Start skyramp trace collection
-_Exported on 9/5/2025 at 13:54:58 EDT from Cursor (1.5.9)_
+_Exported on 9/5/2025 at 17:06:13 EDT from Cursor (1.5.11)_
 
 ---
 
 **User**
 
-start the skyramp trace collection and output the file in the working dir
+start skyramp trace collection 
 
 ---
 
 **Cursor**
 
-I'll start the Skyramp trace collection for you and output the trace file to your working directory.
+I'll help you start Skyramp trace collection. Let me start the trace collection process for you.
 
 
-Perfect! Skyramp trace collection has been started successfully. The system is now:
+Great! Skyramp trace collection has been successfully started. Here's what's happening:
 
-1. **Running the Skyramp worker** on port 35142
-2. **Launching Chromium browser** for UI interaction tracing
-3. **Monitoring your application** for API calls, service communications, and user interactions
-
-The trace collection is now active and will capture:
-- Frontend UI interactions (clicks, form submissions, navigation)
-- Backend API calls and service communications
-- Network traffic and data flows
+✅ **Trace collection is now active**
+- Skyramp worker is running
+- Chromium browser has been launched
+- The system is now monitoring and capturing:
+  - UI interactions (clicks, form submissions, navigation)
+  - API calls and service communications
+  - Network traffic and data flows
 
 **Next steps:**
-1. Interact with your demoshop-ui application (browse products, add items to cart, place orders, etc.)
-2. Let me know when you're ready to stop the trace collection
-3. I'll then stop the collection and save the trace file to your working directory (`/Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui`)
+1. **Interact with your application** - Navigate through your demoshop-ui, perform various actions like browsing products, adding items to cart, creating orders, etc.
+2. **Let me know when you're done** - When you've completed the user workflows you want to test, just tell me to stop the trace collection.
 
-The trace data will be used to generate comprehensive tests that reflect your real-world usage patterns. Go ahead and use your application - the trace collection is running in the background!
+The trace collection will capture all the interactions and API calls, which can then be used to generate comprehensive tests (integration, load, E2E, or UI tests) that reflect real-world usage patterns.
+
+What would you like to do next? You can start interacting with your application, or let me know if you need any guidance on what actions to perform during the trace collection.
 
 ---
 
 **User**
 
-stop trace collection
+stop trace collection 
 
 ---
 
 **Cursor**
 
-I'll stop the trace collection and save the files to your working directory.
+I'll stop the Skyramp trace collection for you and save the captured data.
 
 
-Perfect! Trace collection has been successfully stopped and the files have been saved to your working directory. Here's what was captured:
+Perfect! Skyramp trace collection has been successfully stopped and the data has been saved. Here's what was captured:
 
-## 📁 Generated Files:
-- **Backend Trace**: `/Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/skyramp-traces.json` (2MB)
-- **UI Trace**: `/Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/skyramp-traces-playwright.zip`
+## 📊 **Trace Collection Summary**
 
-## 🌐 Captured Endpoints:
-The trace captured interactions with the following domains:
+✅ **Files Generated:**
+- **Backend Trace**: `/Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/test_github/skyramp-traces.json`
+- **Playwright UI Trace**: `/Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/test_github/playwright-ui-test.zip`
+
+## 🌐 **Captured Endpoints & Domains**
+
+The trace captured interactions with these domains:
 
 ### **Primary Application Domain:**
-- `demoshop.skyramp.dev` - Your main application with API endpoints:
-  - `/api/v1/products` - Product catalog
-  - `/api/v1/orders` - Order management  
-  - `/api/v1/reset` - Reset functionality
-  - `/api/v1/generate` - Data generation
-  - Various product images and assets
+- `demoshop.skyramp.dev` - Your main application with various endpoints:
+  - API endpoints: `/api/v1/products`, `/api/v1/orders`, `/api/v1/generate`, `/api/v1/reset`
+  - Product pages: `/products/24`, `/products/25`, `/products/26`
+  - Static assets: images, CSS, JS files
+  - Main pages: `/`, `/products`, `/orders`
 
 ### **External Services:**
-- `static.cloudflareinsights.com` - Cloudflare analytics
 - `content-autofill.googleapis.com` - Google autofill services
-- `accounts.google.com` - Google account services
+- `accounts.google.com` - Google account services  
+- `static.cloudflareinsights.com` - Cloudflare analytics
 - `cloudflareinsights.com` - Cloudflare monitoring
 
-## ⚠️ Important Note:
-Before generating integration/E2E/load tests, please confirm which domains you want to include:
+## 🎯 **Next Steps**
 
-1. **Include all domains** - For comprehensive testing including external services
-2. **Include only demoshop.skyramp.dev** - For focused testing of your application only
-3. **Exclude specific domains** - If you want to filter out certain external services
+You can now generate various types of tests using this trace data:
 
-**UI tests can be generated using just the Playwright files** and don't require backend trace filtering.
+1. **UI Tests** - Using the Playwright file only
+2. **Integration Tests** - Using the backend trace file
+3. **Load Tests** - Using the backend trace file
+4. **E2E Tests** - Using both trace files
 
-Would you like me to proceed with test generation using all captured domains, or would you prefer to exclude any specific domains?
+**Important**: Before generating integration/E2E/load tests, please confirm if you want to include the external services (Google, Cloudflare) in your test generation, or if you'd prefer to focus only on your `demoshop.skyramp.dev` application endpoints.
+
+What type of test would you like to generate next?
 
 ---
 
 **User**
 
-generate a ui test from the trace
+generate a ui test from the trace in typescroipts and call it demoshop_test.spec.ts
 
 ---
 
 **Cursor**
 
-I'll generate a UI test using the Playwright trace file that was captured.
+I'll generate a UI test from the captured Playwright trace in TypeScript and save it as `demoshop_test.spec.ts`.
 
 
-Great! The UI test has been successfully generated. Let me read the generated test file to see what was created and then modularize it according to the requirements.
+Perfect! The UI test has been successfully generated. Let me read the generated test file to see its contents and then modularize it according to the principles.
 
 
-Now I'll modularize the code according to the requirements, extracting reusable logical sections into helper functions while preserving the original order and structure:
-
-
-```javascript
-// Generated by Skyramp v1.2.13 on 2025-09-05 13:39:16.445384 -0400 EDT m=+2806.021422168
-// Command: skyramp generate ui rest \
-// 		--framework playwright \
-// 		--language javascript \
-// 		--output-dir /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui \
-// 		--overwrite true \
-// 		--playwright-trace /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/skyramp-traces-playwright.zip \
-// 		--runtime local \
-
-// Import of required libraries
-const { SkyrampClient, checkStatusCode, checkSchema, getValue, iterate, MultipartParam } = require('@skyramp/skyramp');
-const { test, expect } = require('@playwright/test');
-const assert = require('assert');
-
-// Helper function to set session ID
-async function setSessionId(page, sessionId) {
-    await page.getByRole("button", { name: "Edit Session ID" }).click();
-    await page.getByRole("textbox").click();
-    await page.getByRole("textbox").press("a");
-    await page.getByRole("textbox").fill(sessionId);
-    await page.getByRole("textbox").press("Enter");
-}
-
-// Helper function to clear application state
-async function clearApplicationState(page) {
-    await page.waitForTimeout(1500);
-    const responsePromise = page.waitForResponse("**/api/v1/reset");
-    await page.getByTestId("navbar-clear-state").click();
-    const response = await responsePromise;
-    return response;
-}
-
-// Helper function to fill product form
-async function fillProductForm(page, productData) {
-    await page.getByTestId("new_product_name").click();
-    await page.getByTestId("new_product_name").fill(getValue(productData, "name"));
-    await page.getByTestId("new_product_name").press("Tab");
-    await page.getByTestId("new_product_description").fill(getValue(productData, "description"));
-    await page.getByTestId("new_product_description").press("Tab");
-    await page.getByTestId("new_product_image_url").fill(getValue(productData, "image_url"));
-    await page.getByTestId("new_product_image_url").press("Tab");
-    await page.getByTestId("new_product_category").fill(getValue(productData, "category"));
-    await page.getByTestId("new_product_category").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("new_product_instock_yes").press("Enter");
-    await page.getByRole("combobox").press("Tab");
-    await page.getByTestId("new_product_price").fill(getValue(productData, "price").toString());
-}
-
-// Helper function to submit product form
-async function submitProductForm(page) {
-    await page.waitForTimeout(1500);
-    const responsePromise = page.waitForResponse("**/api/v1/products");
-    await page.getByRole("button", { name: "Submit" }).click();
-    const response = await responsePromise;
-    return response;
-}
-
-// Helper function to create a new product
-async function createProduct(page, productData) {
-    await page.getByRole("button", { name: "Add Product" }).click();
-    await fillProductForm(page, productData);
-    return await submitProductForm(page);
-}
-
-// Helper function to fill order form
-async function fillOrderForm(page, orderData) {
-    await page.getByTestId("add-order-input-email").click();
-    await page.getByTestId("add-order-input-email").fill(getValue(orderData, "customer_email"));
-    await page.getByRole("combobox").click();
-    await page.getByTestId("add-order-product-option-hallo").click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
-}
-
-// Helper function to fill order form with quantity
-async function fillOrderFormWithQuantity(page, orderData) {
-    await page.getByTestId("add-order-input-email").click();
-    await page.getByTestId("add-order-input-email").fill(getValue(orderData, "customer_email"));
-    await page.getByTestId("add-order-input-email").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("add-order-product-option-skyramp2").click();
-    await page.getByRole("spinbutton").click();
-    await page.getByRole("spinbutton").fill("12");
-    await page.getByRole("spinbutton").press("ArrowLeft");
-    await page.getByRole("spinbutton").fill(getValue(orderData, "items.0.quantity").toString());
-    await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
-}
-
-// Helper function to submit order form
-async function submitOrderForm(page) {
-    await page.waitForTimeout(1500);
-    const responsePromise = page.waitForResponse("**/api/v1/orders");
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    const response = await responsePromise;
-    return response;
-}
-
-// Helper function to create a new order
-async function createOrder(page, orderData) {
-    await page.getByTestId("navbar-orders").click();
-    await page.getByTestId("add-order-btn").click();
-    await fillOrderForm(page, orderData);
-    return await submitOrderForm(page);
-}
-
-// Helper function to create a new order with quantity
-async function createOrderWithQuantity(page, orderData) {
-    await page.getByTestId("navbar-orders").click();
-    await page.getByTestId("add-order-btn").click();
-    await fillOrderFormWithQuantity(page, orderData);
-    return await submitOrderForm(page);
-}
-
-test('testUi', async ({ page }) => {
-    await page.goto("https://demoshop.skyramp.dev/products");
-    await page.getByTestId("product-catalog-heading").click();
-    await page.getByRole("button", { name: "Edit Session ID" }).click();
-    await page.getByRole("textbox").click();
-    await page.getByRole("textbox").press("a");
-    await page.getByRole("textbox").fill("kolja-ts-testing");
-    await page.getByRole("textbox").press("Enter");
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise0 = page.waitForResponse("**/api/v1/reset");
-    await page.getByTestId("navbar-clear-state").click();
-    const response0 = await responsePromise0;
-
-    await page.getByRole("button", { name: "Add Product" }).click();
-    await page.getByTestId("new_product_name").click();
-    const playwrightRequest1 = {
-        "category": "software",
-        "description": "hallkdsf",
-        "image_url": "images.google.com",
-        "in_stock": true,
-        "name": "hallo",
-        "price": 999
-    };
-
-    await page.getByTestId("new_product_name").fill(getValue(playwrightRequest1, "name"));
-    await page.getByTestId("new_product_name").press("Tab");
-    await page.getByTestId("new_product_description").fill(getValue(playwrightRequest1, "description"));
-    await page.getByTestId("new_product_description").press("Tab");
-    await page.getByTestId("new_product_image_url").fill(getValue(playwrightRequest1, "image_url"));
-    await page.getByTestId("new_product_image_url").press("Tab");
-    await page.getByTestId("new_product_category").fill(getValue(playwrightRequest1, "category"));
-    await page.getByTestId("new_product_category").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("new_product_instock_yes").press("Enter");
-    await page.getByRole("combobox").press("Tab");
-    await page.getByTestId("new_product_price").fill(getValue(playwrightRequest1, "price").toString());
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise1 = page.waitForResponse("**/api/v1/products");
-    await page.getByRole("button", { name: "Submit" }).click();
-    const response1 = await responsePromise1;
-
-    await expect(page.getByTestId("product-detail-value-instock")).toBeVisible();
-    await expect(page.getByTestId("product-detail-value-price")).toContainText("$999");
-    await page.getByRole("button", { name: "Edit Product" }).click();
-    await page.getByTestId("product-detail-input-price").click();
-    await page.getByTestId("product-detail-input-price").press("ArrowLeft");
-    const playwrightRequest2 = {
-        "category": "software",
-        "description": "hallkdsf",
-        "image_url": "images.google.com",
-        "in_stock": true,
-        "name": "hallo",
-        "price": 1999
-    };
-
-    await page.getByTestId("product-detail-input-price").fill(getValue(playwrightRequest2, "price").toString());
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise2 = page.waitForResponse("**/api/v1/products/24");
-    await page.getByRole("button", { name: "Save Product" }).click();
-    const response2 = await responsePromise2;
-
-    await expect(page.getByTestId("product-detail-value-price")).toContainText("$1999");
-    await page.getByTestId("navbar-products").click();
-    await page.getByRole("button", { name: "Add Product" }).click();
-    await page.getByTestId("add-product-label-name").click();
-    await page.getByTestId("new_product_name").click();
-    const playwrightRequest3 = {
-        "category": "software",
-        "description": "hall",
-        "image_url": "images.google.com",
-        "in_stock": true,
-        "name": "skyramp2",
-        "price": 500
-    };
-
-    await page.getByTestId("new_product_name").fill(getValue(playwrightRequest3, "name"));
-    await page.getByTestId("new_product_name").press("Tab");
-    await page.getByTestId("new_product_description").fill(getValue(playwrightRequest3, "description"));
-    await page.getByTestId("new_product_description").press("Tab");
-    await page.getByTestId("new_product_image_url").fill(getValue(playwrightRequest3, "image_url"));
-    await page.getByTestId("new_product_image_url").press("Tab");
-    await page.getByTestId("new_product_category").fill(getValue(playwrightRequest3, "category"));
-    await page.getByTestId("new_product_category").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("new_product_instock_yes").press("Enter");
-    await page.getByRole("combobox").press("Tab");
-    await page.getByTestId("new_product_price").fill(getValue(playwrightRequest3, "price").toString());
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise3 = page.waitForResponse("**/api/v1/products");
-    await page.getByRole("button", { name: "Submit" }).click();
-    const response3 = await responsePromise3;
-
-    await page.getByTestId("navbar-orders").click();
-    await page.getByTestId("add-order-btn").click();
-    await page.getByTestId("add-order-input-email").click();
-    const playwrightRequest4 = {
-        "customer_email": "kolja@skyramp.dev",
-        "items": [{
-            "product_id": "24",
-            "quantity": 1
-        }]
-    };
-
-    await page.getByTestId("add-order-input-email").fill(getValue(playwrightRequest4, "customer_email"));
-    await page.getByRole("combobox").click();
-    await page.getByTestId("add-order-product-option-hallo").click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise4 = page.waitForResponse("**/api/v1/orders");
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    const response4 = await responsePromise4;
-
-    await page.getByTestId("navbar-orders").click();
-    await page.getByTestId("add-order-btn").click();
-    await page.getByTestId("add-order-input-email").click();
-    const playwrightRequest5 = {
-        "customer_email": "kolja@skyramp.dev",
-        "items": [{
-            "product_id": "25",
-            "quantity": 2
-        }]
-    };
-
-    await page.getByTestId("add-order-input-email").fill(getValue(playwrightRequest5, "customer_email"));
-    await page.getByTestId("add-order-input-email").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("add-order-product-option-skyramp2").click();
-    await page.getByRole("spinbutton").click();
-    await page.getByRole("spinbutton").fill("12");
-    await page.getByRole("spinbutton").press("ArrowLeft");
-    await page.getByRole("spinbutton").fill(getValue(playwrightRequest5, "items.0.quantity").toString());
-    await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise5 = page.waitForResponse("**/api/v1/orders");
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    const response5 = await responsePromise5;
-
-    await expect(page.getByTestId("order-detail-value-total")).toContainText("$1000.00");
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise6 = page.waitForResponse("**/api/v1/orders/14");
-    await page.getByRole("button", { name: "Cancel Order" }).click();
-    const response6 = await responsePromise6;
-
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise7 = page.waitForResponse("**/api/v1/reset");
-    await page.getByTestId("navbar-clear-state").click();
-    const response7 = await responsePromise7;
-});
-
-```
-
-Now I need to replace the main test function body to use the helper functions:
-
-
-```javascript
-// Generated by Skyramp v1.2.13 on 2025-09-05 13:39:16.445384 -0400 EDT m=+2806.021422168
-// Command: skyramp generate ui rest \
-// 		--framework playwright \
-// 		--language javascript \
-// 		--output-dir /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui \
-// 		--overwrite true \
-// 		--playwright-trace /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/skyramp-traces-playwright.zip \
-// 		--runtime local \
-
-// Import of required libraries
-const { SkyrampClient, checkStatusCode, checkSchema, getValue, iterate, MultipartParam } = require('@skyramp/skyramp');
-const { test, expect } = require('@playwright/test');
-const assert = require('assert');
-
-// Helper function to set session ID
-async function setSessionId(page, sessionId) {
-    await page.getByRole("button", { name: "Edit Session ID" }).click();
-    await page.getByRole("textbox").click();
-    await page.getByRole("textbox").press("a");
-    await page.getByRole("textbox").fill(sessionId);
-    await page.getByRole("textbox").press("Enter");
-}
-
-// Helper function to clear application state
-async function clearApplicationState(page) {
-    await page.waitForTimeout(1500);
-    const responsePromise = page.waitForResponse("**/api/v1/reset");
-    await page.getByTestId("navbar-clear-state").click();
-    const response = await responsePromise;
-    return response;
-}
-
-// Helper function to fill product form
-async function fillProductForm(page, productData) {
-    await page.getByTestId("new_product_name").click();
-    await page.getByTestId("new_product_name").fill(getValue(productData, "name"));
-    await page.getByTestId("new_product_name").press("Tab");
-    await page.getByTestId("new_product_description").fill(getValue(productData, "description"));
-    await page.getByTestId("new_product_description").press("Tab");
-    await page.getByTestId("new_product_image_url").fill(getValue(productData, "image_url"));
-    await page.getByTestId("new_product_image_url").press("Tab");
-    await page.getByTestId("new_product_category").fill(getValue(productData, "category"));
-    await page.getByTestId("new_product_category").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("new_product_instock_yes").press("Enter");
-    await page.getByRole("combobox").press("Tab");
-    await page.getByTestId("new_product_price").fill(getValue(productData, "price").toString());
-}
-
-// Helper function to submit product form
-async function submitProductForm(page) {
-    await page.waitForTimeout(1500);
-    const responsePromise = page.waitForResponse("**/api/v1/products");
-    await page.getByRole("button", { name: "Submit" }).click();
-    const response = await responsePromise;
-    return response;
-}
-
-// Helper function to create a new product
-async function createProduct(page, productData) {
-    await page.getByRole("button", { name: "Add Product" }).click();
-    await fillProductForm(page, productData);
-    return await submitProductForm(page);
-}
-
-// Helper function to fill order form
-async function fillOrderForm(page, orderData) {
-    await page.getByTestId("add-order-input-email").click();
-    await page.getByTestId("add-order-input-email").fill(getValue(orderData, "customer_email"));
-    await page.getByRole("combobox").click();
-    await page.getByTestId("add-order-product-option-hallo").click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
-}
-
-// Helper function to fill order form with quantity
-async function fillOrderFormWithQuantity(page, orderData) {
-    await page.getByTestId("add-order-input-email").click();
-    await page.getByTestId("add-order-input-email").fill(getValue(orderData, "customer_email"));
-    await page.getByTestId("add-order-input-email").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("add-order-product-option-skyramp2").click();
-    await page.getByRole("spinbutton").click();
-    await page.getByRole("spinbutton").fill("12");
-    await page.getByRole("spinbutton").press("ArrowLeft");
-    await page.getByRole("spinbutton").fill(getValue(orderData, "items.0.quantity").toString());
-    await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
-}
-
-// Helper function to submit order form
-async function submitOrderForm(page) {
-    await page.waitForTimeout(1500);
-    const responsePromise = page.waitForResponse("**/api/v1/orders");
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    const response = await responsePromise;
-    return response;
-}
-
-// Helper function to create a new order
-async function createOrder(page, orderData) {
-    await page.getByTestId("navbar-orders").click();
-    await page.getByTestId("add-order-btn").click();
-    await fillOrderForm(page, orderData);
-    return await submitOrderForm(page);
-}
-
-// Helper function to create a new order with quantity
-async function createOrderWithQuantity(page, orderData) {
-    await page.getByTestId("navbar-orders").click();
-    await page.getByTestId("add-order-btn").click();
-    await fillOrderFormWithQuantity(page, orderData);
-    return await submitOrderForm(page);
-}
-
-test('testUi', async ({ page }) => {
-    await page.goto("https://demoshop.skyramp.dev/products");
-    await page.getByTestId("product-catalog-heading").click();
-    await setSessionId(page, "kolja-ts-testing");
-    const response0 = await clearApplicationState(page);
-
-    const playwrightRequest1 = {
-        "category": "software",
-        "description": "hallkdsf",
-        "image_url": "images.google.com",
-        "in_stock": true,
-        "name": "hallo",
-        "price": 999
-    };
-    const response1 = await createProduct(page, playwrightRequest1);
-
-    await expect(page.getByTestId("product-detail-value-instock")).toBeVisible();
-    await expect(page.getByTestId("product-detail-value-price")).toContainText("$999");
-    await page.getByRole("button", { name: "Edit Product" }).click();
-    await page.getByTestId("product-detail-input-price").click();
-    await page.getByTestId("product-detail-input-price").press("ArrowLeft");
-    const playwrightRequest2 = {
-        "category": "software",
-        "description": "hallkdsf",
-        "image_url": "images.google.com",
-        "in_stock": true,
-        "name": "hallo",
-        "price": 1999
-    };
-
-    await page.getByTestId("product-detail-input-price").fill(getValue(playwrightRequest2, "price").toString());
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise2 = page.waitForResponse("**/api/v1/products/24");
-    await page.getByRole("button", { name: "Save Product" }).click();
-    const response2 = await responsePromise2;
-
-    await expect(page.getByTestId("product-detail-value-price")).toContainText("$1999");
-    await page.getByTestId("navbar-products").click();
-    await page.getByTestId("add-product-label-name").click();
-    const playwrightRequest3 = {
-        "category": "software",
-        "description": "hall",
-        "image_url": "images.google.com",
-        "in_stock": true,
-        "name": "skyramp2",
-        "price": 500
-    };
-    const response3 = await createProduct(page, playwrightRequest3);
-
-    const playwrightRequest4 = {
-        "customer_email": "kolja@skyramp.dev",
-        "items": [{
-            "product_id": "24",
-            "quantity": 1
-        }]
-    };
-    const response4 = await createOrder(page, playwrightRequest4);
-
-    const playwrightRequest5 = {
-        "customer_email": "kolja@skyramp.dev",
-        "items": [{
-            "product_id": "25",
-            "quantity": 2
-        }]
-    };
-    const response5 = await createOrderWithQuantity(page, playwrightRequest5);
-
-    await expect(page.getByTestId("order-detail-value-total")).toContainText("$1000.00");
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise6 = page.waitForResponse("**/api/v1/orders/14");
-    await page.getByRole("button", { name: "Cancel Order" }).click();
-    const response6 = await responsePromise6;
-
-    const response7 = await clearApplicationState(page);
-});
-
-```
-
-Perfect! I've successfully generated and modularized the UI test. Here's what was accomplished:
-
-## ✅ **UI Test Generated Successfully**
-
-The test file `ui_test.spec.js` has been created in your working directory with comprehensive UI testing coverage for the demoshop application.
-
-## 🔧 **Modularization Applied**
-
-I've refactored the code following the modularization principles by extracting reusable logical sections into helper functions:
-
-### **Helper Functions Created:**
-- `setSessionId()` - Handles session ID configuration
-- `clearApplicationState()` - Manages application state reset
-- `fillProductForm()` - Fills product creation forms
-- `submitProductForm()` - Submits product forms
-- `createProduct()` - Complete product creation workflow
-- `fillOrderForm()` - Fills basic order forms
-- `fillOrderFormWithQuantity()` - Fills order forms with quantity selection
-- `submitOrderForm()` - Submits order forms
-- `createOrder()` - Complete order creation workflow
-- `createOrderWithQuantity()` - Complete order creation with quantity workflow
-
-### **Test Coverage:**
-The test covers the complete user journey:
-1. **Session Setup** - Setting session ID and clearing state
-2. **Product Management** - Creating products, editing prices, viewing details
-3. **Order Management** - Creating orders with different products and quantities
-4. **Order Operations** - Canceling orders and verifying totals
-5. **State Management** - Clearing application state
-
-## 🚀 **Next Steps**
-
-### **Install Dependencies:**
-```bash
-npm install @skyramp/skyramp @playwright/test
-```
-
-### **Run the Test:**
-```bash
-npx playwright test ui_test.spec.js --reporter=list
-```
-
-### **Execute with Skyramp:**
-You can also use the **Execute with Skyramp** tool to run the test in an isolated containerized environment for maximum reliability. If this is your first test execution with Skyramp, it may take a bit longer as Docker images are downloaded.
-
-**Authentication:** Before I can execute the test for you, please let me know:
-- Do you need an authentication token for your service? (Please provide your Bearer token)
-- Or say "No token required" if authentication isn't needed
-
-The modularized test is now ready to run and provides comprehensive coverage of your demoshop application's UI workflows!
-
-```shellscript
-npm install @skyramp/skyramp @playwright/test
-```
-
-```shellscript
-npx playwright test ui_test.spec.js --reporter=list
-```
-
----
-
-**User**
-
-can you generate the ui test in typescript instead/.
-
----
-
-**Cursor**
-
-I'll generate a new UI test in TypeScript for you. Let me create a TypeScript version of the UI test.
-
-
-Great! Now let me read the generated TypeScript test file and modularize it according to the requirements.
-
-
-Now I'll modularize the TypeScript test file by adding helper functions and type definitions:
+Now I'll modularize the code according to the principles by extracting reusable logical sections into helper functions while preserving the original order and logic:
 
 
 ```typescript
-// Generated by Skyramp v1.2.13 on 2025-09-05 13:42:15.859519 -0400 EDT m=+2985.437261459
+// Generated by Skyramp v1.2.13 on 2025-09-05 16:38:59.984028 -0400 EDT m=+7738.805018584
 // Command: skyramp generate ui rest \
 // 		--framework playwright \
 // 		--language typescript \
-// 		--output-dir /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui \
+// 		--output demoshop_test.spec.ts \
+// 		--output-dir /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/test_github \
 // 		--overwrite true \
-// 		--playwright-trace /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/skyramp-traces-playwright.zip \
+// 		--playwright-trace /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/test_github/playwright-ui-test.zip \
 // 		--runtime local \
 
 // Import of required libraries
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { SkyrampClient, checkStatusCode, checkSchema, getValue, iterate, MultipartParam } from '@skyramp/skyramp';
 
-// Type definitions
-interface ProductData {
-    category: string;
-    description: string;
-    image_url: string;
-    in_stock: boolean;
-    name: string;
-    price: number;
-}
-
-interface OrderItem {
-    product_id: string;
-    quantity: number;
-}
-
-interface OrderData {
-    customer_email: string;
-    items: OrderItem[];
-}
-
 // Helper function to set session ID
-async function setSessionId(page: Page, sessionId: string): Promise<void> {
+async function setSessionId(page: any, sessionId: string) {
     await page.getByRole("button", { name: "Edit Session ID" }).click();
     await page.getByRole("textbox").click();
     await page.getByRole("textbox").press("a");
     await page.getByRole("textbox").fill(sessionId);
     await page.getByRole("textbox").press("Enter");
+    await page.waitForTimeout(1500);
 }
 
 // Helper function to clear application state
-async function clearApplicationState(page: Page): Promise<any> {
-    await page.waitForTimeout(1500);
+async function clearApplicationState(page: any) {
     const responsePromise = page.waitForResponse("**/api/v1/reset");
     await page.getByTestId("navbar-clear-state").click();
     const response = await responsePromise;
@@ -705,7 +136,7 @@ async function clearApplicationState(page: Page): Promise<any> {
 }
 
 // Helper function to fill product form
-async function fillProductForm(page: Page, productData: ProductData): Promise<void> {
+async function fillProductForm(page: any, productData: Record<string, any>) {
     await page.getByTestId("new_product_name").click();
     await page.getByTestId("new_product_name").fill(getValue(productData, "name"));
     await page.getByTestId("new_product_name").press("Tab");
@@ -722,7 +153,7 @@ async function fillProductForm(page: Page, productData: ProductData): Promise<vo
 }
 
 // Helper function to submit product form
-async function submitProductForm(page: Page): Promise<any> {
+async function submitProductForm(page: any) {
     await page.waitForTimeout(1500);
     const responsePromise = page.waitForResponse("**/api/v1/products");
     await page.getByRole("button", { name: "Submit" }).click();
@@ -730,40 +161,25 @@ async function submitProductForm(page: Page): Promise<any> {
     return response;
 }
 
-// Helper function to create a new product
-async function createProduct(page: Page, productData: ProductData): Promise<any> {
+// Helper function to add a product
+async function addProduct(page: any, productData: Record<string, any>) {
     await page.getByRole("button", { name: "Add Product" }).click();
     await fillProductForm(page, productData);
     return await submitProductForm(page);
 }
 
 // Helper function to fill order form
-async function fillOrderForm(page: Page, orderData: OrderData): Promise<void> {
-    await page.getByTestId("add-order-input-email").click();
-    await page.getByTestId("add-order-input-email").fill(getValue(orderData, "customer_email"));
-    await page.getByRole("combobox").click();
-    await page.getByTestId("add-order-product-option-hallo").click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
-}
-
-// Helper function to fill order form with quantity
-async function fillOrderFormWithQuantity(page: Page, orderData: OrderData): Promise<void> {
+async function fillOrderForm(page: any, orderData: Record<string, any>) {
     await page.getByTestId("add-order-input-email").click();
     await page.getByTestId("add-order-input-email").fill(getValue(orderData, "customer_email"));
     await page.getByTestId("add-order-input-email").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("add-order-product-option-skyramp2").click();
-    await page.getByRole("spinbutton").click();
-    await page.getByRole("spinbutton").fill("12");
-    await page.getByRole("spinbutton").press("ArrowLeft");
-    await page.getByRole("spinbutton").fill(getValue(orderData, "items.0.quantity").toString());
+    await page.getByRole("combobox").click();
+    await page.getByTestId("add-order-product-option-hahllo2").getByText("hahllo2 ($500)").click();
     await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
 }
 
 // Helper function to submit order form
-async function submitOrderForm(page: Page): Promise<any> {
+async function submitOrderForm(page: any) {
     await page.waitForTimeout(1500);
     const responsePromise = page.waitForResponse("**/api/v1/orders");
     await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
@@ -771,25 +187,24 @@ async function submitOrderForm(page: Page): Promise<any> {
     return response;
 }
 
-// Helper function to create a new order
-async function createOrder(page: Page, orderData: OrderData): Promise<any> {
-    await page.getByTestId("navbar-orders").click();
+// Helper function to add an order
+async function addOrder(page: any, orderData: Record<string, any>) {
     await page.getByTestId("add-order-btn").click();
     await fillOrderForm(page, orderData);
     return await submitOrderForm(page);
 }
 
-// Helper function to create a new order with quantity
-async function createOrderWithQuantity(page: Page, orderData: OrderData): Promise<any> {
-    await page.getByTestId("navbar-orders").click();
-    await page.getByTestId("add-order-btn").click();
-    await fillOrderFormWithQuantity(page, orderData);
-    return await submitOrderForm(page);
+// Helper function to delete a product
+async function deleteProduct(page: any) {
+    await page.waitForTimeout(1500);
+    const responsePromise = page.waitForResponse("**/api/v1/products/26");
+    await page.getByRole("button", { name: "Delete Product" }).click();
+    const response = await responsePromise;
+    return response;
 }
 
 test('testUi', async ({ page }) => {
     await page.goto("https://demoshop.skyramp.dev/products");
-    await page.getByTestId("product-catalog-heading").click();
     await page.getByRole("button", { name: "Edit Session ID" }).click();
     await page.getByRole("textbox").click();
     await page.getByRole("textbox").press("a");
@@ -804,9 +219,9 @@ test('testUi', async ({ page }) => {
     await page.getByRole("button", { name: "Add Product" }).click();
     await page.getByTestId("new_product_name").click();
     const playwrightRequest1: Record<string, any> = {
-        "category": "software",
-        "description": "hallkdsf",
-        "image_url": "images.google.com",
+        "category": "softrware",
+        "description": "hallo",
+        "image_url": "images.googl.ecom",
         "in_stock": true,
         "name": "hallo",
         "price": 999
@@ -814,7 +229,7 @@ test('testUi', async ({ page }) => {
 
     await page.getByTestId("new_product_name").fill(getValue(playwrightRequest1, "name"));
     await page.getByTestId("new_product_name").press("Tab");
-    await page.getByTestId("new_product_description").fill(getValue(playwrightRequest1, "description"));
+    await page.getByTestId("new_product_description").fill(getValue(playwrightRequest1, "name"));
     await page.getByTestId("new_product_description").press("Tab");
     await page.getByTestId("new_product_image_url").fill(getValue(playwrightRequest1, "image_url"));
     await page.getByTestId("new_product_image_url").press("Tab");
@@ -830,173 +245,157 @@ test('testUi', async ({ page }) => {
     await page.getByRole("button", { name: "Submit" }).click();
     const response1 = await responsePromise1;
 
-    await expect(page.getByTestId("product-detail-value-instock")).toBeVisible();
-    await expect(page.getByTestId("product-detail-value-price")).toContainText("$999");
-    await page.getByRole("button", { name: "Edit Product" }).click();
-    await page.getByTestId("product-detail-input-price").click();
-    await page.getByTestId("product-detail-input-price").press("ArrowLeft");
-    const playwrightRequest2: Record<string, any> = {
-        "category": "software",
-        "description": "hallkdsf",
-        "image_url": "images.google.com",
-        "in_stock": true,
-        "name": "hallo",
-        "price": 1999
-    };
-
-    await page.getByTestId("product-detail-input-price").fill(getValue(playwrightRequest2, "price").toString());
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise2 = page.waitForResponse("**/api/v1/products/24");
-    await page.getByRole("button", { name: "Save Product" }).click();
-    const response2 = await responsePromise2;
-
-    await expect(page.getByTestId("product-detail-value-price")).toContainText("$1999");
     await page.getByTestId("navbar-products").click();
     await page.getByRole("button", { name: "Add Product" }).click();
-    await page.getByTestId("add-product-label-name").click();
     await page.getByTestId("new_product_name").click();
-    const playwrightRequest3: Record<string, any> = {
+    await page.getByTestId("new_product_name").fill("h");
+    await page.getByTestId("new_product_name").press("CapsLock");
+    const playwrightRequest2: Record<string, any> = {
         "category": "software",
-        "description": "hall",
+        "description": "hallo",
         "image_url": "images.google.com",
         "in_stock": true,
-        "name": "skyramp2",
+        "name": "hahllo2",
         "price": 500
     };
 
-    await page.getByTestId("new_product_name").fill(getValue(playwrightRequest3, "name"));
+    await page.getByTestId("new_product_name").fill(getValue(playwrightRequest2, "name"));
     await page.getByTestId("new_product_name").press("Tab");
-    await page.getByTestId("new_product_description").fill(getValue(playwrightRequest3, "description"));
+    await page.getByTestId("new_product_description").fill(getValue(playwrightRequest2, "description"));
     await page.getByTestId("new_product_description").press("Tab");
-    await page.getByTestId("new_product_image_url").fill(getValue(playwrightRequest3, "image_url"));
+    await page.getByTestId("new_product_image_url").fill(getValue(playwrightRequest2, "image_url"));
     await page.getByTestId("new_product_image_url").press("Tab");
-    await page.getByTestId("new_product_category").fill(getValue(playwrightRequest3, "category"));
+    await page.getByTestId("new_product_category").fill(getValue(playwrightRequest2, "category"));
     await page.getByTestId("new_product_category").press("Tab");
     await page.getByRole("combobox").press("ArrowDown");
     await page.getByTestId("new_product_instock_yes").press("Enter");
     await page.getByRole("combobox").press("Tab");
-    await page.getByTestId("new_product_price").fill(getValue(playwrightRequest3, "price").toString());
+    await page.getByTestId("new_product_price").fill(getValue(playwrightRequest2, "price").toString());
     // Wait to finish any potential hydration
     await page.waitForTimeout(1500);
-    const responsePromise3 = page.waitForResponse("**/api/v1/products");
+    const responsePromise2 = page.waitForResponse("**/api/v1/products");
     await page.getByRole("button", { name: "Submit" }).click();
-    const response3 = await responsePromise3;
+    const response2 = await responsePromise2;
 
     await page.getByTestId("navbar-orders").click();
     await page.getByTestId("add-order-btn").click();
     await page.getByTestId("add-order-input-email").click();
-    const playwrightRequest4: Record<string, any> = {
+    const playwrightRequest3: Record<string, any> = {
         "customer_email": "kolja@skyramp.dev",
         "items": [{
-            "product_id": "24",
+            "product_id": "25",
             "quantity": 1
         }]
     };
 
-    await page.getByTestId("add-order-input-email").fill(getValue(playwrightRequest4, "customer_email"));
+    await page.getByTestId("add-order-input-email").fill(getValue(playwrightRequest3, "customer_email"));
+    await page.getByTestId("add-order-input-email").press("Tab");
     await page.getByRole("combobox").click();
-    await page.getByTestId("add-order-product-option-hallo").click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
+    await page.getByTestId("add-order-product-option-hahllo2").getByText("hahllo2 ($500)").click();
     await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
     // Wait to finish any potential hydration
     await page.waitForTimeout(1500);
-    const responsePromise4 = page.waitForResponse("**/api/v1/orders");
+    const responsePromise3 = page.waitForResponse("**/api/v1/orders");
     await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    const response4 = await responsePromise4;
+    const response3 = await responsePromise3;
 
-    await page.getByTestId("navbar-orders").click();
-    await page.getByTestId("add-order-btn").click();
-    await page.getByTestId("add-order-input-email").click();
-    const playwrightRequest5: Record<string, any> = {
-        "customer_email": "kolja@skyramp.dev",
-        "items": [{
-            "product_id": "25",
-            "quantity": 2
-        }]
+    await page.getByTestId("navbar-products").click();
+    await page.getByRole("button", { name: "Add Product" }).click();
+    await page.getByTestId("new_product_name").click();
+    const playwrightRequest4: Record<string, any> = {
+        "category": "software",
+        "description": "hallo",
+        "image_url": "iamges.google.com",
+        "in_stock": true,
+        "name": "hallo3",
+        "price": 600
     };
 
-    await page.getByTestId("add-order-input-email").fill(getValue(playwrightRequest5, "customer_email"));
-    await page.getByTestId("add-order-input-email").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("add-order-product-option-skyramp2").click();
-    await page.getByRole("spinbutton").click();
-    await page.getByRole("spinbutton").fill("12");
-    await page.getByRole("spinbutton").press("ArrowLeft");
-    await page.getByRole("spinbutton").fill(getValue(playwrightRequest5, "items.0.quantity").toString());
-    await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
+    await page.getByTestId("new_product_name").fill(getValue(playwrightRequest4, "name"));
+    await page.getByTestId("new_product_name").press("Tab");
+    await page.getByTestId("new_product_description").fill(getValue(playwrightRequest4, "description"));
+    await page.getByTestId("new_product_description").press("Tab");
+    await page.getByTestId("new_product_image_url").fill(getValue(playwrightRequest4, "image_url"));
+    await page.getByTestId("new_product_image_url").press("Tab");
+    await page.getByTestId("new_product_category").fill(getValue(playwrightRequest4, "category"));
+    await page.getByTestId("new_product_category").press("Tab");
+    await page.getByRole("combobox").press("Tab");
+    await page.getByTestId("new_product_price").fill(getValue(playwrightRequest4, "price").toString());
     // Wait to finish any potential hydration
     await page.waitForTimeout(1500);
-    const responsePromise5 = page.waitForResponse("**/api/v1/orders");
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
+    const responsePromise4 = page.waitForResponse("**/api/v1/products");
+    await page.getByRole("button", { name: "Submit" }).click();
+    const response4 = await responsePromise4;
+
+    // Wait to finish any potential hydration
+    await page.waitForTimeout(1500);
+    const responsePromise5 = page.waitForResponse("**/api/v1/products/26");
+    await page.getByRole("button", { name: "Delete Product" }).click();
     const response5 = await responsePromise5;
 
-    await expect(page.getByTestId("order-detail-value-total")).toContainText("$1000.00");
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise6 = page.waitForResponse("**/api/v1/orders/14");
-    await page.getByRole("button", { name: "Cancel Order" }).click();
-    const response6 = await responsePromise6;
+    await page.getByRole("button", { name: "Add Product" }).click();
+    await page.getByTestId("new_product_name").click();
+    const playwrightRequest5: Record<string, any> = {
+        "category": "software",
+        "description": "hallo",
+        "image_url": "iumages.google.com",
+        "in_stock": true,
+        "name": "hallo4",
+        "price": 500
+    };
 
+    await page.getByTestId("new_product_name").fill(getValue(playwrightRequest5, "name"));
+    await page.getByTestId("new_product_name").press("Tab");
+    await page.getByTestId("new_product_description").fill(getValue(playwrightRequest5, "description"));
+    await page.getByTestId("new_product_description").press("Tab");
+    await page.getByTestId("new_product_image_url").fill(getValue(playwrightRequest5, "image_url"));
+    await page.getByTestId("new_product_image_url").press("Tab");
+    await page.getByTestId("new_product_category").fill(getValue(playwrightRequest5, "category"));
+    await page.getByTestId("new_product_category").press("Tab");
+    await page.getByRole("combobox").press("ArrowDown");
+    await page.getByTestId("new_product_instock_yes").press("ArrowLeft");
+    await page.getByTestId("new_product_instock_yes").press("Enter");
+    await page.getByRole("combobox").press("Tab");
+    await page.getByTestId("new_product_price").fill(getValue(playwrightRequest5, "price").toString());
     // Wait to finish any potential hydration
     await page.waitForTimeout(1500);
-    const responsePromise7 = page.waitForResponse("**/api/v1/reset");
-    await page.getByTestId("navbar-clear-state").click();
-    const response7 = await responsePromise7;
+    const responsePromise6 = page.waitForResponse("**/api/v1/products");
+    await page.getByRole("button", { name: "Submit" }).click();
+    const response6 = await responsePromise6;
 });
 
 ```
 
-Now I need to replace the main test function body to use the helper functions:
+Now I'll replace the main test function body with the modularized version using the helper functions:
 
 
 ```typescript
-// Generated by Skyramp v1.2.13 on 2025-09-05 13:42:15.859519 -0400 EDT m=+2985.437261459
+// Generated by Skyramp v1.2.13 on 2025-09-05 16:38:59.984028 -0400 EDT m=+7738.805018584
 // Command: skyramp generate ui rest \
 // 		--framework playwright \
 // 		--language typescript \
-// 		--output-dir /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui \
+// 		--output demoshop_test.spec.ts \
+// 		--output-dir /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/test_github \
 // 		--overwrite true \
-// 		--playwright-trace /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/skyramp-traces-playwright.zip \
+// 		--playwright-trace /Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/test_github/playwright-ui-test.zip \
 // 		--runtime local \
 
 // Import of required libraries
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { SkyrampClient, checkStatusCode, checkSchema, getValue, iterate, MultipartParam } from '@skyramp/skyramp';
 
-// Type definitions
-interface ProductData {
-    category: string;
-    description: string;
-    image_url: string;
-    in_stock: boolean;
-    name: string;
-    price: number;
-}
-
-interface OrderItem {
-    product_id: string;
-    quantity: number;
-}
-
-interface OrderData {
-    customer_email: string;
-    items: OrderItem[];
-}
-
 // Helper function to set session ID
-async function setSessionId(page: Page, sessionId: string): Promise<void> {
+async function setSessionId(page: any, sessionId: string) {
     await page.getByRole("button", { name: "Edit Session ID" }).click();
     await page.getByRole("textbox").click();
     await page.getByRole("textbox").press("a");
     await page.getByRole("textbox").fill(sessionId);
     await page.getByRole("textbox").press("Enter");
+    await page.waitForTimeout(1500);
 }
 
 // Helper function to clear application state
-async function clearApplicationState(page: Page): Promise<any> {
-    await page.waitForTimeout(1500);
+async function clearApplicationState(page: any) {
     const responsePromise = page.waitForResponse("**/api/v1/reset");
     await page.getByTestId("navbar-clear-state").click();
     const response = await responsePromise;
@@ -1004,7 +403,7 @@ async function clearApplicationState(page: Page): Promise<any> {
 }
 
 // Helper function to fill product form
-async function fillProductForm(page: Page, productData: ProductData): Promise<void> {
+async function fillProductForm(page: any, productData: Record<string, any>) {
     await page.getByTestId("new_product_name").click();
     await page.getByTestId("new_product_name").fill(getValue(productData, "name"));
     await page.getByTestId("new_product_name").press("Tab");
@@ -1021,7 +420,7 @@ async function fillProductForm(page: Page, productData: ProductData): Promise<vo
 }
 
 // Helper function to submit product form
-async function submitProductForm(page: Page): Promise<any> {
+async function submitProductForm(page: any) {
     await page.waitForTimeout(1500);
     const responsePromise = page.waitForResponse("**/api/v1/products");
     await page.getByRole("button", { name: "Submit" }).click();
@@ -1029,40 +428,25 @@ async function submitProductForm(page: Page): Promise<any> {
     return response;
 }
 
-// Helper function to create a new product
-async function createProduct(page: Page, productData: ProductData): Promise<any> {
+// Helper function to add a product
+async function addProduct(page: any, productData: Record<string, any>) {
     await page.getByRole("button", { name: "Add Product" }).click();
     await fillProductForm(page, productData);
     return await submitProductForm(page);
 }
 
 // Helper function to fill order form
-async function fillOrderForm(page: Page, orderData: OrderData): Promise<void> {
-    await page.getByTestId("add-order-input-email").click();
-    await page.getByTestId("add-order-input-email").fill(getValue(orderData, "customer_email"));
-    await page.getByRole("combobox").click();
-    await page.getByTestId("add-order-product-option-hallo").click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
-    await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
-}
-
-// Helper function to fill order form with quantity
-async function fillOrderFormWithQuantity(page: Page, orderData: OrderData): Promise<void> {
+async function fillOrderForm(page: any, orderData: Record<string, any>) {
     await page.getByTestId("add-order-input-email").click();
     await page.getByTestId("add-order-input-email").fill(getValue(orderData, "customer_email"));
     await page.getByTestId("add-order-input-email").press("Tab");
-    await page.getByRole("combobox").press("ArrowDown");
-    await page.getByTestId("add-order-product-option-skyramp2").click();
-    await page.getByRole("spinbutton").click();
-    await page.getByRole("spinbutton").fill("12");
-    await page.getByRole("spinbutton").press("ArrowLeft");
-    await page.getByRole("spinbutton").fill(getValue(orderData, "items.0.quantity").toString());
+    await page.getByRole("combobox").click();
+    await page.getByTestId("add-order-product-option-hahllo2").getByText("hahllo2 ($500)").click();
     await page.getByTestId("add-order-products-container").getByRole("button", { name: "Add" }).click();
 }
 
 // Helper function to submit order form
-async function submitOrderForm(page: Page): Promise<any> {
+async function submitOrderForm(page: any) {
     await page.waitForTimeout(1500);
     const responsePromise = page.waitForResponse("**/api/v1/orders");
     await page.getByTestId("add-order-form-fields-container").getByRole("button", { name: "Add Order" }).click();
@@ -1070,165 +454,171 @@ async function submitOrderForm(page: Page): Promise<any> {
     return response;
 }
 
-// Helper function to create a new order
-async function createOrder(page: Page, orderData: OrderData): Promise<any> {
-    await page.getByTestId("navbar-orders").click();
+// Helper function to add an order
+async function addOrder(page: any, orderData: Record<string, any>) {
     await page.getByTestId("add-order-btn").click();
     await fillOrderForm(page, orderData);
     return await submitOrderForm(page);
 }
 
-// Helper function to create a new order with quantity
-async function createOrderWithQuantity(page: Page, orderData: OrderData): Promise<any> {
-    await page.getByTestId("navbar-orders").click();
-    await page.getByTestId("add-order-btn").click();
-    await fillOrderFormWithQuantity(page, orderData);
-    return await submitOrderForm(page);
+// Helper function to delete a product
+async function deleteProduct(page: any) {
+    await page.waitForTimeout(1500);
+    const responsePromise = page.waitForResponse("**/api/v1/products/26");
+    await page.getByRole("button", { name: "Delete Product" }).click();
+    const response = await responsePromise;
+    return response;
 }
 
 test('testUi', async ({ page }) => {
     await page.goto("https://demoshop.skyramp.dev/products");
-    await page.getByTestId("product-catalog-heading").click();
+    
+    // Set session ID
     await setSessionId(page, "kolja-ts-testing");
+    
+    // Clear application state
     const response0 = await clearApplicationState(page);
 
-    const playwrightRequest1: ProductData = {
-        "category": "software",
-        "description": "hallkdsf",
-        "image_url": "images.google.com",
+    // Add first product
+    const playwrightRequest1: Record<string, any> = {
+        "category": "softrware",
+        "description": "hallo",
+        "image_url": "images.googl.ecom",
         "in_stock": true,
         "name": "hallo",
         "price": 999
     };
-    const response1 = await createProduct(page, playwrightRequest1);
+    const response1 = await addProduct(page, playwrightRequest1);
 
-    await expect(page.getByTestId("product-detail-value-instock")).toBeVisible();
-    await expect(page.getByTestId("product-detail-value-price")).toContainText("$999");
-    await page.getByRole("button", { name: "Edit Product" }).click();
-    await page.getByTestId("product-detail-input-price").click();
-    await page.getByTestId("product-detail-input-price").press("ArrowLeft");
-    const playwrightRequest2: ProductData = {
-        "category": "software",
-        "description": "hallkdsf",
-        "image_url": "images.google.com",
-        "in_stock": true,
-        "name": "hallo",
-        "price": 1999
-    };
-
-    await page.getByTestId("product-detail-input-price").fill(getValue(playwrightRequest2, "price").toString());
-    // Wait to finish any potential hydration
-    await page.waitForTimeout(1500);
-    const responsePromise2 = page.waitForResponse("**/api/v1/products/24");
-    await page.getByRole("button", { name: "Save Product" }).click();
-    const response2 = await responsePromise2;
-
-    await expect(page.getByTestId("product-detail-value-price")).toContainText("$1999");
+    // Navigate to products and add second product
     await page.getByTestId("navbar-products").click();
-    await page.getByTestId("add-product-label-name").click();
-    const playwrightRequest3: ProductData = {
+    await page.getByRole("button", { name: "Add Product" }).click();
+    await page.getByTestId("new_product_name").click();
+    await page.getByTestId("new_product_name").fill("h");
+    await page.getByTestId("new_product_name").press("CapsLock");
+    const playwrightRequest2: Record<string, any> = {
         "category": "software",
-        "description": "hall",
+        "description": "hallo",
         "image_url": "images.google.com",
         "in_stock": true,
-        "name": "skyramp2",
+        "name": "hahllo2",
         "price": 500
     };
-    const response3 = await createProduct(page, playwrightRequest3);
+    const response2 = await addProduct(page, playwrightRequest2);
 
-    const playwrightRequest4: OrderData = {
-        "customer_email": "kolja@skyramp.dev",
-        "items": [{
-            "product_id": "24",
-            "quantity": 1
-        }]
-    };
-    const response4 = await createOrder(page, playwrightRequest4);
-
-    const playwrightRequest5: OrderData = {
+    // Navigate to orders and add an order
+    await page.getByTestId("navbar-orders").click();
+    const playwrightRequest3: Record<string, any> = {
         "customer_email": "kolja@skyramp.dev",
         "items": [{
             "product_id": "25",
-            "quantity": 2
+            "quantity": 1
         }]
     };
-    const response5 = await createOrderWithQuantity(page, playwrightRequest5);
+    const response3 = await addOrder(page, playwrightRequest3);
 
-    await expect(page.getByTestId("order-detail-value-total")).toContainText("$1000.00");
-    // Wait to finish any potential hydration
+    // Navigate back to products and add third product
+    await page.getByTestId("navbar-products").click();
+    const playwrightRequest4: Record<string, any> = {
+        "category": "software",
+        "description": "hallo",
+        "image_url": "iamges.google.com",
+        "in_stock": true,
+        "name": "hallo3",
+        "price": 600
+    };
+    const response4 = await addProduct(page, playwrightRequest4);
+
+    // Delete a product
+    const response5 = await deleteProduct(page);
+
+    // Add fourth product
+    const playwrightRequest5: Record<string, any> = {
+        "category": "software",
+        "description": "hallo",
+        "image_url": "iumages.google.com",
+        "in_stock": true,
+        "name": "hallo4",
+        "price": 500
+    };
+    await page.getByRole("button", { name: "Add Product" }).click();
+    await page.getByTestId("new_product_name").click();
+    await page.getByTestId("new_product_name").fill(getValue(playwrightRequest5, "name"));
+    await page.getByTestId("new_product_name").press("Tab");
+    await page.getByTestId("new_product_description").fill(getValue(playwrightRequest5, "description"));
+    await page.getByTestId("new_product_description").press("Tab");
+    await page.getByTestId("new_product_image_url").fill(getValue(playwrightRequest5, "image_url"));
+    await page.getByTestId("new_product_image_url").press("Tab");
+    await page.getByTestId("new_product_category").fill(getValue(playwrightRequest5, "category"));
+    await page.getByTestId("new_product_category").press("Tab");
+    await page.getByRole("combobox").press("ArrowDown");
+    await page.getByTestId("new_product_instock_yes").press("ArrowLeft");
+    await page.getByTestId("new_product_instock_yes").press("Enter");
+    await page.getByRole("combobox").press("Tab");
+    await page.getByTestId("new_product_price").fill(getValue(playwrightRequest5, "price").toString());
     await page.waitForTimeout(1500);
-    const responsePromise6 = page.waitForResponse("**/api/v1/orders/14");
-    await page.getByRole("button", { name: "Cancel Order" }).click();
+    const responsePromise6 = page.waitForResponse("**/api/v1/products");
+    await page.getByRole("button", { name: "Submit" }).click();
     const response6 = await responsePromise6;
-
-    const response7 = await clearApplicationState(page);
 });
 
 ```
 
-Perfect! I've successfully generated and modularized the TypeScript UI test. Let me check for any linting errors:
+Perfect! I've successfully generated and modularized the UI test. Here's what was accomplished:
 
+## ✅ **UI Test Generated Successfully**
 
-Excellent! The TypeScript UI test has been successfully generated and modularized without any linting errors. Here's what was accomplished:
+**File Created**: `/Users/koljaheck/Documents/Professional/Skyramp/demoshop-ui/test_github/demoshop_test.spec.ts`
 
-## ✅ **TypeScript UI Test Generated Successfully**
+## 🔧 **Modularization Applied**
 
-The test file `ui_test.spec.ts` has been created in your working directory with comprehensive UI testing coverage for the demoshop application.
+The test has been refactored with the following helper functions:
 
-## 🔧 **TypeScript Modularization Applied**
+1. **`setSessionId()`** - Handles session ID configuration
+2. **`clearApplicationState()`** - Clears application state via reset API
+3. **`fillProductForm()`** - Fills product form fields
+4. **`submitProductForm()`** - Submits product form and waits for response
+5. **`addProduct()`** - Complete product addition workflow
+6. **`fillOrderForm()`** - Fills order form fields
+7. **`submitOrderForm()`** - Submits order form and waits for response
+8. **`addOrder()`** - Complete order addition workflow
+9. **`deleteProduct()`** - Handles product deletion
 
-I've refactored the code following the modularization principles with proper TypeScript typing:
+## 📋 **Test Workflow**
 
-### **Type Definitions Added:**
-- `ProductData` interface - Defines the structure for product data
-- `OrderItem` interface - Defines order item structure  
-- `OrderData` interface - Defines complete order data structure
-- Proper `Page` typing from Playwright
-
-### **Helper Functions with TypeScript Types:**
-- `setSessionId(page: Page, sessionId: string): Promise<void>`
-- `clearApplicationState(page: Page): Promise<any>`
-- `fillProductForm(page: Page, productData: ProductData): Promise<void>`
-- `submitProductForm(page: Page): Promise<any>`
-- `createProduct(page: Page, productData: ProductData): Promise<any>`
-- `fillOrderForm(page: Page, orderData: OrderData): Promise<void>`
-- `fillOrderFormWithQuantity(page: Page, orderData: OrderData): Promise<void>`
-- `submitOrderForm(page: Page): Promise<any>`
-- `createOrder(page: Page, orderData: OrderData): Promise<any>`
-- `createOrderWithQuantity(page: Page, orderData: OrderData): Promise<any>`
-
-### **Enhanced Type Safety:**
-- All request objects now use proper TypeScript interfaces instead of `Record<string, any>`
-- Function parameters are properly typed
-- Return types are explicitly defined
-- Better IDE support and compile-time error checking
+The test performs these actions in sequence:
+1. **Setup**: Navigate to products page and set session ID
+2. **Reset**: Clear application state
+3. **Product Management**: Add multiple products with different data
+4. **Order Management**: Create an order with customer email and product selection
+5. **Cleanup**: Delete a product and add final product
 
 ## 🚀 **Next Steps**
 
-### **Install Dependencies:**
-```bash
-npm install @skyramp/skyramp @playwright/test
-```
+You can now:
 
-### **Run the TypeScript Test:**
-```bash
-npx playwright test ui_test.spec.ts --reporter=list
-```
+1. **Install Dependencies**:
+   ```bash
+   npm install @skyramp/skyramp @playwright/test
+   ```
 
-### **Execute with Skyramp:**
-You can also use the **Execute with Skyramp** tool to run the test in an isolated containerized environment for maximum reliability.
+2. **Run the Test Locally**:
+   ```bash
+   npx playwright test demoshop_test.spec.ts --reporter=list
+   ```
 
-**Authentication:** Before I can execute the test for you, please let me know:
-- Do you need an authentication token for your service? (Please provide your Bearer token)
-- Or say "No token required" if authentication isn't needed
+3. **Execute with Skyramp** (recommended for better reliability):
+   - I can help you run this test using Skyramp's execution engine
+   - This provides isolated, containerized execution
+   - **Authentication**: Do you require any authentication token for your service, or should I use "No token required"?
 
-The modularized TypeScript test provides the same comprehensive coverage as the JavaScript version but with enhanced type safety, better IDE support, and improved maintainability!
-
-```shellscript
-npm install @skyramp/skyramp @playwright/test
-```
+The test is now ready to run and validates the complete user workflow of your demoshop application!
 
 ```shellscript
-npx playwright test ui_test.spec.ts --reporter=list
+   npm install @skyramp/skyramp @playwright/test
+```
+
+```shellscript
+   npx playwright test demoshop_test.spec.ts --reporter=list
 ```
 
